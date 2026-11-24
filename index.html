@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Financeiro | LDHealth</title>
+    <meta name="theme-color" content="#17324d">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
 
     <!-- Bibliotecas utilizadas pelo dashboard -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
 
     <style>
         /* =====================================================
@@ -3627,6 +3630,16 @@ function formatCompactCurrency(value) {
 
     return formatCurrency(number);
 }
+</script>
+
+<script>
+    if ("serviceWorker" in navigator && window.isSecureContext) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./sw.js").catch(error => {
+                console.error("Falha ao ativar o modo offline do dashboard.", error);
+            });
+        });
+    }
 </script>
 
 </body>
